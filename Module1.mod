@@ -1,0 +1,46 @@
+MODULE Module1
+        CONST robtarget pReposo:=[[979.496732003,0,829],[0.5,0,0.866025404,0],[0,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget pAprox:=[[550,1450,-200],[0,0,0,1],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+    CONST robtarget pCogida:=[[550,1450,-100],[0,0,0,1],[0,0,0,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
+!***********************************************************
+    !
+    ! M?dulo:  Module1
+    !
+    ! Descripción:
+    !   <Introduzca la descripción aquí>
+    !
+    ! Autor: rafac
+    !
+    ! Versión: 1.0
+    !
+    !***********************************************************
+    
+    
+    !***********************************************************
+    !
+    ! Procedimiento Main
+    !
+    !   Este es el punto de entrada de su programa
+    !
+    !***********************************************************
+    PROC main()
+        !Add your code here
+        Path_20;
+    ENDPROC
+    PROC Path_20()
+        MoveL pReposo,v1000,fine,Ventosa\WObj:=wobj0;
+        MoveL pAprox,v1000,fine,Ventosa\WObj:=Workobject_1;
+        MoveL pCogida,v1000,fine,Ventosa\WObj:=Workobject_1;
+        SetDO SD_ActivaVentosa,1;
+        WaitDi ED_PiezaCogida,1;
+        MoveL pAprox,v1000,fine,Ventosa\WObj:=Workobject_1;
+        MoveL pReposo,v1000,fine,Ventosa\WObj:=wobj0;
+        MoveL pAprox,v1000,fine,Ventosa\WObj:=Workobject_1;
+        MoveL pCogida,v1000,fine,Ventosa\WObj:=Workobject_1;
+        SetDO SD_ActivaVentosa,0;
+        WaitDI ED_PiezaCogida,0;
+        MoveL pAprox,v1000,fine,Ventosa\WObj:=Workobject_1;
+        MoveL pReposo,v1000,fine,Ventosa\WObj:=wobj0;
+
+    ENDPROC
+ENDMODULE

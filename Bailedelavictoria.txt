@@ -1,0 +1,36 @@
+
+MoveL Offs(pReposo, 0, 250, 0), v1500, z100, Ventosa\WObj:=wobj0;
+    MoveL Offs(pReposo, 0, -250, 0), v1500, z100, Ventosa\WObj:=wobj0;
+    MoveL pReposo, v1500, z50, Ventosa\WObj:=wobj0;
+
+    ! ---------------------------------------------------------
+    ! PASO 2: Rebote vertical (Bounce en el eje Z)
+    ! ---------------------------------------------------------
+    ! Sube y baja rápidamente marcando el "beat"
+    MoveL Offs(pReposo, 0, 0, 200), v2000, z50, Ventosa\WObj:=wobj0;
+    MoveL Offs(pReposo, 0, 0, -100), v2000, z50, Ventosa\WObj:=wobj0;
+    MoveL Offs(pReposo, 0, 0, 100), v2000, z50, Ventosa\WObj:=wobj0;
+    MoveL pReposo, v1500, z50, Ventosa\WObj:=wobj0;
+
+    ! ---------------------------------------------------------
+    ! PASO 3: La "Ola" (Movimiento fluido con MoveC)
+    ! ---------------------------------------------------------
+    ! Aprovechamos MoveC para crear trayectorias curvas y sinusoidales.
+    ! MoveC requiere dos puntos: un punto intermedio (cirpoint) y el destino final (toppoint).
+    
+    ! Medio círculo hacia la derecha y adelante
+    MoveC Offs(pReposo, 150, 150, 100), Offs(pReposo, 300, 0, 0), v1000, z50, Ventosa\WObj:=wobj0;
+    
+    ! Medio círculo hacia la izquierda volviendo atrás
+    MoveC Offs(pReposo, 150, -150, -100), pReposo, v1000, z50, Ventosa\WObj:=wobj0;
+
+    ! ---------------------------------------------------------
+    ! PASO 4: Saludo final (Inclinación del eje 5)
+    ! ---------------------------------------------------------
+    ! Para este paso, en lugar de Offs, usamos RelTool para rotar sobre la propia herramienta
+    ! Rotamos la herramienta 30 grados en Y (cabeceo)
+    MoveL RelTool(pReposo, 0, 0, 0 \Ry:=30), v800, fine, Ventosa\WObj:=wobj0;
+    WaitTime 0.5;
+    
+    ! Fin del baile, volvemos a la pose estática de reposo
+    MoveJ pReposo, v1000, fine, Ventosa\WObj:=wobj0;
